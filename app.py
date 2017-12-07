@@ -48,11 +48,11 @@ class API():
         image_extension = image_file.filename.split(".")[-1]
         image_basename = ".".join(image_file.filename.split(".")[0:-1])
         image_filename = image_basename + "." + image_extension
-        image_ipfs_hash = utils.upload_image(image_file.read(), image_filename)
+        image_ipfs_hash = self.utils.upload_image(image_file.read(), image_filename)
         # Thumbnail data
         thumbnail_file = create_thumbnail(image_file)
         thumbnail_filename = image_basename + "-thumbnail.jpeg"
-        thumbnail_ipfs_hash = utils.upload_image(thumbnail_file, thumbnail_filename)
+        thumbnail_ipfs_hash = self.utils.upload_image(thumbnail_file, thumbnail_filename)
         # thumbnail_ipfs_hash = "test"
         response = {
             "original": image_ipfs_hash,
@@ -61,7 +61,7 @@ class API():
         return jsonify(response)
 
     def get_threads(self):
-        threads_json = utils.get_threads()
+        threads_json = self.utils.get_threads()
         return jsonify(threads_json)
 
 
